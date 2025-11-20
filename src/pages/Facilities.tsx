@@ -9,59 +9,59 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 const mockFacilities = [
   {
     id: "1",
-    name: "Hội trường A",
-    type: "hall",
+    name: "Hội trường tầng 1",
+    type: "hoi_truong",
     capacity: 200,
     pricePerHour: 500000,
-    residentPrice: 400000,
+    residentPrice: 0,
     status: "available",
-    description: "Hội trường lớn phù hợp cho sự kiện, hội nghị",
+    description: "Hội trường rộng tầng 1, phù hợp tổ chức đám cưới, sự kiện lớn và các hoạt động sinh hoạt chung của tổ dân phố",
     images: ["https://images.unsplash.com/photo-1505873242700-f289a29e1e0f?w=500"],
-    amenities: ["Máy chiếu", "Âm thanh", "Điều hòa", "WiFi"],
-    area: 300,
-    floor: "Tầng 2",
+    amenities: ["Sân khấu", "Hệ thống âm thanh lớn", "Màn hình LED", "Điều hòa", "Bàn ghế 200 chỗ", "Đèn sân khấu"],
+    area: 240,
+    floor: "Tầng 1",
   },
   {
     id: "2",
-    name: "Sân tennis",
-    type: "court",
-    capacity: 4,
-    pricePerHour: 100000,
-    residentPrice: 80000,
+    name: "Phòng họp A - Tầng 2",
+    type: "phong_chuc_nang",
+    capacity: 40,
+    pricePerHour: 200000,
+    residentPrice: 0,
     status: "available",
-    description: "Sân tennis chuyên nghiệp với mặt sân chuẩn",
-    images: ["https://images.unsplash.com/photo-1554068865-24cecd4e34b8?w=500"],
-    amenities: ["Đèn chiếu sáng", "Lưới chuẩn", "Ghế ngồi"],
-    area: 650,
-    floor: "Tầng trệt",
+    description: "Phòng họp tầng 2 dành cho các cuộc họp, sinh hoạt chi bộ, tập huấn",
+    images: ["https://images.unsplash.com/photo-1497366216548-37526070297c?w=500"],
+    amenities: ["Máy chiếu", "Bảng viết", "Điều hòa", "WiFi", "Bàn ghế họp"],
+    area: 80,
+    floor: "Tầng 2",
   },
   {
     id: "3",
-    name: "Phòng họp B",
-    type: "room",
-    capacity: 20,
+    name: "Phòng sinh hoạt văn nghệ",
+    type: "phong_chuc_nang",
+    capacity: 30,
     pricePerHour: 150000,
-    residentPrice: 120000,
+    residentPrice: 0,
     status: "available",
-    description: "Phòng họp hiện đại cho các cuộc họp nhỏ",
-    images: ["https://images.unsplash.com/photo-1497366216548-37526070297c?w=500"],
-    amenities: ["Máy chiếu", "Bảng trắng", "Điều hòa", "WiFi"],
-    area: 50,
-    floor: "Tầng 3",
+    description: "Phòng dành cho các hoạt động văn nghệ, múa hát, luyện tập",
+    images: ["https://images.unsplash.com/photo-1598623803034-a9b2c2df0b63?w=500"],
+    amenities: ["Gương lớn", "Sàn gỗ", "Loa Bluetooth", "Điều hòa"],
+    area: 60,
+    floor: "Tầng 2",
   },
   {
     id: "4",
-    name: "Bể bơi Olympic",
-    type: "pool",
+    name: "Sân thể thao ngoài trời",
+    type: "san_the_thao",
     capacity: 50,
-    pricePerHour: 200000,
-    residentPrice: 150000,
-    status: "maintenance",
-    description: "Bể bơi tiêu chuẩn Olympic đang bảo trì",
-    images: ["https://images.unsplash.com/photo-1576610616656-d3aa5d1f4534?w=500"],
-    amenities: ["Phao bơi", "Nhà thay đồ", "Vòi sen"],
-    area: 800,
-    floor: "Tầng trệt",
+    pricePerHour: 100000,
+    residentPrice: 0,
+    status: "available",
+    description: "Sân đa năng cho các hoạt động thể thao: cầu lông, bóng chuyền, thể dục buổi sáng",
+    images: ["https://images.unsplash.com/photo-1554068865-24cecd4e34b8?w=500"],
+    amenities: ["Đèn chiếu sáng", "Lưới cầu lông", "Ghế ngồi", "Khu vực để đồ"],
+    area: 300,
+    floor: "Sân ngoài",
   },
 ];
 
@@ -72,12 +72,10 @@ const statusConfig = {
 };
 
 const typeLabels = {
-  hall: "Hội trường",
-  room: "Phòng họp",
-  field: "Sân cỏ",
-  court: "Sân thể thao",
-  pool: "Bể bơi",
-  gym: "Phòng gym",
+  hoi_truong: "Hội trường",
+  phong_chuc_nang: "Phòng chức năng",
+  san_van_hoa: "Sân văn hóa",
+  san_the_thao: "Sân thể thao",
 };
 
 export default function Facilities() {
@@ -128,10 +126,10 @@ export default function Facilities() {
               </SelectTrigger>
               <SelectContent>
                 <SelectItem value="all">Tất cả loại</SelectItem>
-                <SelectItem value="hall">Hội trường</SelectItem>
-                <SelectItem value="room">Phòng họp</SelectItem>
-                <SelectItem value="court">Sân thể thao</SelectItem>
-                <SelectItem value="pool">Bể bơi</SelectItem>
+                <SelectItem value="hoi_truong">Hội trường</SelectItem>
+                <SelectItem value="phong_chuc_nang">Phòng chức năng</SelectItem>
+                <SelectItem value="san_van_hoa">Sân văn hóa</SelectItem>
+                <SelectItem value="san_the_thao">Sân thể thao</SelectItem>
               </SelectContent>
             </Select>
             <Select value={statusFilter} onValueChange={setStatusFilter}>

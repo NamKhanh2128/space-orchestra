@@ -3,7 +3,7 @@ export interface User {
   email: string;
   name: string;
   phone: string;
-  role: 'admin' | 'manager' | 'staff' | 'resident' | 'guest';
+  role: 'to_truong' | 'can_bo_ql' | 'cu_dan' | 'khach';
   status: 'active' | 'inactive' | 'blacklisted';
   avatar?: string;
   createdAt: string;
@@ -15,7 +15,7 @@ export interface User {
 export interface Facility {
   id: string;
   name: string;
-  type: 'hall' | 'room' | 'field' | 'court' | 'pool' | 'gym';
+  type: 'hoi_truong' | 'phong_chuc_nang' | 'san_van_hoa' | 'san_the_thao';
   capacity: number;
   pricePerHour: number;
   residentPrice: number;
@@ -73,6 +73,7 @@ export interface Booking {
   endTime: string;
   status: 'pending' | 'approved' | 'rejected' | 'completed' | 'cancelled' | 'checked-in';
   purpose: string;
+  eventType: 'sinh_hoat_chung' | 'dam_cuoi' | 'su_kien_khac';
   participants: number;
   totalPrice: number;
   isRecurring: boolean;

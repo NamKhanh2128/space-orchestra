@@ -41,12 +41,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       const mockUser: User = {
         id: '1',
         email,
-        name: 'Admin User',
+        name: 'Tổ trưởng',
         phone: '0123456789',
-        role: 'admin',
+        role: 'to_truong',
         status: 'active',
         createdAt: new Date().toISOString(),
-        isResident: false,
+        isResident: true,
       };
       
       localStorage.setItem('user', JSON.stringify(mockUser));
@@ -75,7 +75,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         email: data.email,
         name: data.name,
         phone: data.phone,
-        role: 'resident',
+        role: 'cu_dan',
         status: 'active',
         createdAt: new Date().toISOString(),
         isResident: true,
