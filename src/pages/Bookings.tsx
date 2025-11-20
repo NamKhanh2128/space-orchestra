@@ -10,40 +10,69 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 const mockBookings = [
   {
     id: "1",
-    facilityName: "Hội trường A",
-    userName: "Nguyễn Văn A",
-    userEmail: "nguyenvana@example.com",
+    facilityName: "Hội trường tầng 1",
+    userName: "Nguyễn Văn An",
+    userEmail: "nguyenvanan@example.com",
     startTime: "2024-01-20T14:00:00",
-    endTime: "2024-01-20T16:00:00",
+    endTime: "2024-01-20T20:00:00",
     status: "approved",
-    purpose: "Sự kiện sinh nhật",
-    participants: 50,
-    totalPrice: 2000000,
+    purpose: "Tổ chức tiệc cưới",
+    eventType: "dam_cuoi",
+    participants: 150,
+    totalPrice: 3000000,
   },
   {
     id: "2",
-    facilityName: "Sân tennis",
-    userName: "Trần Thị B",
-    userEmail: "tranthib@example.com",
+    facilityName: "Phòng họp A - Tầng 2",
+    userName: "Tổ dân phố 7",
+    userEmail: "totruong@example.com",
     startTime: "2024-01-21T08:00:00",
-    endTime: "2024-01-21T10:00:00",
-    status: "pending",
-    purpose: "Luyện tập",
-    participants: 4,
-    totalPrice: 400000,
+    endTime: "2024-01-21T11:00:00",
+    status: "approved",
+    purpose: "Họp sinh hoạt chi bộ tháng 1",
+    eventType: "sinh_hoat_chung",
+    participants: 30,
+    totalPrice: 0,
   },
   {
     id: "3",
-    facilityName: "Phòng họp B",
-    userName: "Lê Văn C",
-    userEmail: "levanc@example.com",
-    startTime: "2024-01-22T13:00:00",
-    endTime: "2024-01-22T15:00:00",
+    facilityName: "Sân thể thao ngoài trời",
+    userName: "CLB Thể dục sáng",
+    userEmail: "clbtheduc@example.com",
+    startTime: "2024-01-22T06:00:00",
+    endTime: "2024-01-22T07:30:00",
+    status: "approved",
+    purpose: "Tập thể dục buổi sáng",
+    eventType: "sinh_hoat_chung",
+    participants: 40,
+    totalPrice: 0,
+  },
+  {
+    id: "4",
+    facilityName: "Hội trường tầng 1",
+    userName: "Trần Thị Mai",
+    userEmail: "tranthimai@example.com",
+    startTime: "2024-01-25T10:00:00",
+    endTime: "2024-01-25T16:00:00",
+    status: "pending",
+    purpose: "Tổ chức lễ thôi nôi cho bé",
+    eventType: "su_kien_khac",
+    participants: 80,
+    totalPrice: 2500000,
+  },
+  {
+    id: "5",
+    facilityName: "Phòng sinh hoạt văn nghệ",
+    userName: "Lê Văn Hùng",
+    userEmail: "levanhung@example.com",
+    startTime: "2024-01-23T18:00:00",
+    endTime: "2024-01-23T20:00:00",
     status: "rejected",
-    purpose: "Họp dự án",
-    participants: 10,
-    totalPrice: 500000,
-    rejectionReason: "Đã có booking khác trùng giờ",
+    purpose: "Tập múa cho sự kiện riêng",
+    eventType: "su_kien_khac",
+    participants: 15,
+    totalPrice: 300000,
+    rejectionReason: "Trùng lịch tập văn nghệ của tổ dân phố",
   },
 ];
 
@@ -71,14 +100,14 @@ export default function Bookings() {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight">Quản lý đặt lịch</h1>
+          <h1 className="text-3xl font-bold tracking-tight">Quản lý sử dụng nhà văn hóa</h1>
           <p className="text-muted-foreground mt-1">
-            Xem và quản lý các đơn đặt lịch
+            Quản lý lịch sinh hoạt, đám cưới và sự kiện tại nhà văn hóa Tổ dân phố 7
           </p>
         </div>
         <Button className="gap-2">
           <Plus className="h-4 w-4" />
-          Đặt lịch mới
+          Đăng ký sử dụng
         </Button>
       </div>
 
@@ -157,10 +186,20 @@ export default function Bookings() {
                       </div>
                     </div>
 
-                    <div className="text-sm">
-                      <p className="text-muted-foreground">Mục đích: {booking.purpose}</p>
+                    <div className="text-sm space-y-1">
                       <p className="text-muted-foreground">
-                        Số người tham gia: {booking.participants}
+                        <span className="font-medium">Loại hoạt động:</span>{" "}
+                        {booking.eventType === "sinh_hoat_chung" 
+                          ? "Sinh hoạt chung" 
+                          : booking.eventType === "dam_cuoi" 
+                          ? "Đám cưới" 
+                          : "Sự kiện khác"}
+                      </p>
+                      <p className="text-muted-foreground">
+                        <span className="font-medium">Mục đích:</span> {booking.purpose}
+                      </p>
+                      <p className="text-muted-foreground">
+                        <span className="font-medium">Số người:</span> {booking.participants} người
                       </p>
                       {booking.rejectionReason && (
                         <p className="text-destructive mt-2">
